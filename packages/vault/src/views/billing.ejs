@@ -1,0 +1,58 @@
+<%- include('partials/header') %>
+<h1>Transactions</h1>
+<p class="page-subtitle">Payment history and invoice management</p>
+
+<div class="metric-grid" style="grid-template-columns: repeat(3, 1fr);">
+  <div class="metric-card">
+    <div class="label">Total Paid</div>
+    <div class="metric-value amount">$<%= invoices.filter(i => i.status === 'paid').reduce((sum, i) => sum + i.amount, 0).toLocaleString('en-US', {minimumFractionDigits: 2}) %></div>
+  </div>
+  <div class="metric-card">
+    <div class="label">Pending</div>
+    <div class="metric-value amount" style="color:#a16207">$<%= invoices.filter(i => i.status === 'pending').reduce((sum, i) => sum + i.amount, 0).toLocaleString('en-US', {minimumFractionDigits: 2}) %></div>
+  </div>
+  <div class="metric-card">
+    <div class="label">Overdue</div>
+    <div class="metric-value amount" style="color:#c41e1e">$<%= invoices.filter(i => i.status === 'overdue').reduce((sum, i) => sum + i.amount, 0).toLocaleString('en-US', {minimumFractionDigits: 2}) %></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h2>All Transactions</h2>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% invoices.forEach(function(inv) { %>
+      <tr>
+        <td><%= inv.description %></td>
+        <td class="amount">$<%= inv.amount.toFixed(2) %></td>
+        <td><span class="badge badge-<%= inv.status %>"><%= inv.status %></span></td>
+        <td class="mono" style="font-size:13px;color:#57534e"><%= inv.createdAt %></td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<div class="card" style="margin-top:20px">
+  <div class="card-header">
+    <h2>Payment Method</h2>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px">
+    <div style="width:40px;height:28px;background:#f5f5f4;border:1px solid #e7e5e4;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:#57534e">VISA</div>
+    <div>
+      <div style="font-size:14px;font-weight:500">Visa ending in 4242</div>
+      <div style="font-size:12px;color:#a8a29e">Expires 12/25</div>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') %>

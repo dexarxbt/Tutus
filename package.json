@@ -1,0 +1,22 @@
+{
+  "name": "tutus",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/vault",
+    "packages/server",
+    "packages/ui"
+  ],
+  "scripts": {
+    "dev": "concurrently -n vault,server,ui -c blue,green,magenta \"npm run dev -w packages/vault\" \"npm run dev -w packages/server\" \"npm run dev -w packages/ui\"",
+    "build": "npm run build --workspaces",
+    "doctor": "node scripts/doctor.mjs",
+    "test": "npm run test --workspaces --if-present",
+    "test:vault": "npm run test -w packages/vault",
+    "test:server": "npm run test -w packages/server"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "typescript": "^5.4.5"
+  }
+}

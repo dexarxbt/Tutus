@@ -1,0 +1,55 @@
+<%- include('partials/header') %>
+<h1>Dashboard</h1>
+<p class="page-subtitle">Overview of your organization's financial operations</p>
+
+<div class="metric-grid">
+  <div class="metric-card">
+    <div class="label">Organization</div>
+    <div class="metric-value" style="font-size:20px;margin-top:4px"><%= org.name %></div>
+  </div>
+  <div class="metric-card">
+    <div class="label">Plan</div>
+    <div class="metric-value" style="font-size:20px;margin-top:4px;text-transform:capitalize"><%= org.plan %></div>
+  </div>
+  <div class="metric-card">
+    <div class="label">Team Members</div>
+    <div class="metric-value"><%= metrics.teamMembers %></div>
+  </div>
+  <div class="metric-card">
+    <div class="label">Invoices</div>
+    <div class="metric-value"><%= metrics.invoices %></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h2>Recent Activity</h2>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Payment processed — Pro Plan</td>
+        <td class="mono" style="font-size:13px;color:#57534e">2024-03-15</td>
+        <td><span class="badge badge-paid">Paid</span></td>
+      </tr>
+      <tr>
+        <td>New team member invited</td>
+        <td class="mono" style="font-size:13px;color:#57534e">2024-03-12</td>
+        <td><span class="badge badge-pending">Pending</span></td>
+      </tr>
+      <tr>
+        <td>API key generated</td>
+        <td class="mono" style="font-size:13px;color:#57534e">2024-03-10</td>
+        <td><span class="badge badge-paid">Active</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<%- include('partials/footer') %>

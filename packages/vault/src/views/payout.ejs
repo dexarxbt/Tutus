@@ -1,0 +1,32 @@
+<%- include('partials/header') %>
+<h1>Payout Settings</h1>
+<p class="page-subtitle">Configure where your organization's payments are deposited</p>
+
+<div class="metric-grid" style="grid-template-columns: 1fr 1fr;">
+  <div class="metric-card">
+    <div class="label">Current Destination</div>
+    <div class="metric-value mono" style="font-size:18px;margin-top:4px" id="current-payout"><%= payoutAccount %></div>
+  </div>
+  <div class="metric-card">
+    <div class="label">Payout Schedule</div>
+    <div style="font-size:14px;font-weight:500;margin-top:4px">Monthly — 1st of each month</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h2>Update Payout Account</h2>
+    <p style="font-size:13px;color:#57534e;margin-top:4px">Change the bank account or routing number where payments are deposited.</p>
+  </div>
+  <form id="payout-form" method="POST" action="/billing/payout">
+    <div class="form-group">
+      <label for="payoutAccount">Account Identifier</label>
+      <input type="text" id="payoutAccount" name="payoutAccount" class="form-input" value="<%= payoutAccount %>" placeholder="Enter account number or routing identifier" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Payout Account</button>
+  </form>
+  <% if (typeof success !== 'undefined' && success) { %>
+    <div class="success-msg">Payout account updated successfully.</div>
+  <% } %>
+</div>
+<%- include('partials/footer') %>

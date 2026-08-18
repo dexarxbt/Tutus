@@ -1,0 +1,49 @@
+<%- include('partials/header') %>
+<h1>Team</h1>
+<p class="page-subtitle">Manage team members and access permissions</p>
+
+<div class="card">
+  <div class="card-header">
+    <h2>Team Members</h2>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Joined</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% members.forEach(function(m) { %>
+      <tr>
+        <td style="font-weight:500"><%= m.name %></td>
+        <td class="mono" style="font-size:13px;color:#57534e"><%= m.email %></td>
+        <td><span class="badge badge-<%= m.role %>"><%= m.role %></span></td>
+        <td class="mono" style="font-size:13px;color:#57534e"><%= m.createdAt %></td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<% if (user.userRole === 'admin') { %>
+<div class="card" style="margin-top:20px">
+  <div class="card-header">
+    <h2>Invite Member</h2>
+  </div>
+  <form method="POST" action="/team/invite" style="display:flex;gap:12px;align-items:end">
+    <div class="form-group" style="flex:1;margin-bottom:0">
+      <label for="invite-email">Email</label>
+      <input type="email" id="invite-email" name="email" class="form-input" placeholder="colleague@company.com" required>
+    </div>
+    <div class="form-group" style="flex:1;margin-bottom:0">
+      <label for="invite-name">Full Name</label>
+      <input type="text" id="invite-name" name="name" class="form-input" placeholder="Full Name" required>
+    </div>
+    <button type="submit" class="btn btn-primary" style="margin-bottom:0">Invite</button>
+  </form>
+</div>
+<% } %>
+<%- include('partials/footer') %>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In — Vault</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { -webkit-font-smoothing: antialiased; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #fafaf9; color: #1c1917; min-height: 100vh; display: flex; }
+
+    .login-layout { display: flex; width: 100%; min-height: 100vh; }
+    .login-left { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 48px; }
+    .login-right { flex: 1; background: #1c1917; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 48px; }
+    .login-right-content { max-width: 360px; }
+    .login-right h2 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; color: #fafaf9; margin-bottom: 12px; }
+    .login-right p { font-size: 15px; color: #a8a29e; line-height: 1.6; }
+
+    .login-form { width: 100%; max-width: 360px; }
+    .login-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 48px; }
+    .login-logo svg { width: 28px; height: 28px; }
+    .login-logo span { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; }
+    .login-title { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 6px; }
+    .login-subtitle { font-size: 14px; color: #57534e; margin-bottom: 32px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 500; color: #1c1917; margin-bottom: 6px; }
+    .form-input { width: 100%; padding: 11px 14px; border: 1px solid #e7e5e4; border-radius: 8px; font-size: 14px; color: #1c1917; font-family: inherit; transition: all 0.15s; background: #fff; }
+    .form-input:focus { outline: none; border-color: #1c1917; box-shadow: 0 0 0 3px rgba(28,25,23,0.05); }
+    .form-input::placeholder { color: #a8a29e; }
+    .btn-submit { width: 100%; padding: 12px; background: #1c1917; color: #fafaf9; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: inherit; transition: background 0.15s; }
+    .btn-submit:hover { background: #292524; }
+    .error-msg { padding: 10px 14px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; font-size: 13px; color: #c41e1e; margin-bottom: 20px; }
+
+    @media (max-width: 768px) {
+      .login-right { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-layout">
+    <div class="login-left">
+      <div class="login-form">
+        <div class="login-logo">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 6h32v4H8V6z" fill="#1a1a1a"/>
+            <path d="M10 10h14v28L10 32V10z" fill="#1a1a1a"/>
+            <path d="M24 10h14v22l-14 6V10z" fill="#c41e1e"/>
+          </svg>
+          <span>Vault</span>
+        </div>
+        <h1 class="login-title">Sign in</h1>
+        <p class="login-subtitle">Enter your credentials to access your account</p>
+        <% if (typeof error !== 'undefined' && error) { %>
+          <div class="error-msg"><%= error %></div>
+        <% } %>
+        <form method="POST" action="/login">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="you@company.com" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+          </div>
+          <button type="submit" class="btn-submit">Sign In</button>
+        </form>
+      </div>
+    </div>
+    <div class="login-right">
+      <div class="login-right-content">
+        <h2>Enterprise Financial Operations</h2>
+        <p>Manage your organization's payments, team access, and payout settings in one secure platform.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
