@@ -2,6 +2,10 @@
 
 Autonomous security investigation agent that discovers and proves the most dangerous action an authenticated user can perform in a web application.
 
+[![Demo](https://img.shields.io/badge/Demo-YouTube-red)](https://youtu.be/Hn5_4lkRH84)
+
+> **[Watch the full demo →](https://youtu.be/Hn5_4lkRH84)**
+
 Tutus authenticates as a given user, explores what that user can reach, identifies meaningful actions, ranks them by potential impact, tests whether authorization actually prevents them, and captures reproducible evidence when a dangerous action succeeds. The investigation engine is deterministic and rule-based — no external LLM or paid AI service is involved. It is autonomous in the sense that it drives a real browser, makes real navigation and submission decisions, and reaches conclusions based on observed HTTP responses rather than static rules or predetermined outcomes.
 
 ---
